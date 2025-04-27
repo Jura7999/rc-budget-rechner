@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./src/output.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="main.js" defer></script>
+  </head>
+  <body class="font-main">
+    <section
+      class="hero pb-16 lg:pt-24 lg:pb-24 flex flex-col items-center gap-8 lg:gap-12 bg-gradient-to-tl from-hero-start to-hero-end"
+    >
+      <div class="hero__image-container pt-8 w-full flex justify-center">
+        <img
+          src="assets/hero-img.png"
+          alt="Illustration Marketing Budget Planung Maschinenbau"
+          class="max-w-full h-auto"
+          width="600"
+          height="450"
+        />
+      </div>
+      <div
+        class="flex flex-col items-center text-center px-4 w-full max-w-[600px] lg:max-w-[750px]"
+      >
+        <div class="mb-4">
+          <h1
+            class="font-main font-bold text-white text-3xl lg:text-6xl leading-tight mb-3"
+          >
+            Marketingbudget im Maschinenbau:
+          </h1>
+          <p
+            class="font-main font-semibold text-white text-lg lg:text-2xl leading-7 lg:leading-relaxed"
+          >
+            Treffsicher planen statt raten.
+          </p>
+        </div>
+        <p
+          class="font-main font-normal text-gray-primary mb-8 text-lg lg:text-xl leading-7 lg:leading-relaxed max-w-[600px]"
+        >
+          Maximieren Sie Ihren Marketing-ROI durch eine datenbasierte
+          Budget-Allokation. Unser Kalkulator gibt Ihnen in wenigen Schritten
+          eine klare Empfehlung für die optimale Verteilung auf Digital-, Print-
+          und Offline-Kanäle – speziell zugeschnitten auf mittelständische
+          Maschinenbauer.
+        </p>
+        <a
+          href="#kalkulator"
+          class="inline-block rounded-full cursor-pointer text-center font-main font-semibold text-white bg-accent-gold border-2 border-white px-6 py-3 text-base leading-6 lg:px-8 lg:py-4 lg:text-lg transition ease-in-out duration-300 hover:opacity-90 hover:scale-105 active:scale-95 active:translate-y-0.5 active:opacity-80 no-underline shadow-button"
+        >
+          Jetzt kostenlos testen
+        </a>
+      </div>
+    </section>
+
+    <div
+      class="max-w-7xl mx-auto px-4 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start"
+    >
+      <section class="py-12 lg:pt-16 lg:pb-0">
+        <div class="text-center lg:text-left mb-8 lg:mb-12">
+          <p class="font-semibold text-accent-gold mb-2 lg:text-lg">
+            Wie funktioniert der Budget-Kalkulator?
+          </p>
+          <h2 class="font-bold text-black-light text-3xl lg:text-4xl">
+            In nur 3 Schritten zu Ihrer Empfehlung
+          </h2>
+        </div>
+
+        <div class="flex flex-col gap-8 md:gap-10 lg:gap-12">
+          <div
+            class="flex flex-col items-center text-center md:flex-row md:items-start md:text-left md:gap-6"
+          >
+            <div
+              class="flex-shrink-0 w-16 h-16 mb-4 md:mb-0 flex items-center justify-center rounded-full bg-accent-gold/10"
+            >
+              <img
+                src="assets/bank-note-01.svg"
+                alt="Budget eingeben"
+                class="w-8 h-8"
+              />
+            </div>
+            <div>
+              <p class="text-gray-primary text-base lg:text-lg leading-relaxed">
+                Geben Sie Ihr geplantes Jahresbudget und zentrale
+                Unternehmensdaten ein.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-center text-center md:flex-row md:items-start md:text-left md:gap-6"
+          >
+            <div
+              class="flex-shrink-0 w-16 h-16 mb-4 md:mb-0 flex items-center justify-center rounded-full bg-accent-gold/10"
+            >
+              <img
+                src="assets/lightbulb-04.svg"
+                alt="Analyse erhalten"
+                class="w-8 h-8"
+              />
+            </div>
+            <div>
+              <p class="text-gray-primary text-base lg:text-lg leading-relaxed">
+                Unsere Analyse-Logik bewertet Ihre Angaben auf Basis relevanter
+                Branchen-Insights.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-center text-center md:flex-row md:items-start md:text-left md:gap-6"
+          >
+            <div
+              class="flex-shrink-0 w-16 h-16 mb-4 md:mb-0 flex items-center justify-center rounded-full bg-accent-gold/10"
+            >
+              <img
+                src="assets/award-05.svg"
+                alt="Aufschlüsselung erhalten"
+                class="w-8 h-8"
+              />
+            </div>
+            <div>
+              <p class="text-gray-primary text-base lg:text-lg leading-relaxed">
+                Sie erhalten eine klare Aufschlüsselung Ihres Budgets in Euro
+                und Prozent für die wichtigsten Kanalgruppen. So investieren Sie
+                zielgerichtet und effizient.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="kalkulator" class="bg-white py-12 lg:px-0 lg:py-24">
+        <div
+          class="bg-[url('../assets/formular-background.jpg')] bg-cover bg-center rounded-2xl py-8 px-4 md:p-12 lg:p-8"
+        >
+          <div
+            class="bg-white py-8 px-4 md:p-8 rounded-3xl shadow-lg flex flex-col gap-6 lg:max-w-lg lg:mx-auto"
+          >
+            <h2 class="font-main font-bold text-xl text-black-light">
+              Berechnen Sie jetzt Ihre optimale Budgetverteilung
+            </h2>
+
+            <form id="budget-calculator-form" action="#" method="POST">
+              <div class="form-step form-step--1" id="step-1">
+                <div class="flex flex-col gap-4">
+                  <div>
+                    <div class="flex items-baseline gap-1 mb-1">
+                      <label
+                        for="total-budget"
+                        class="font-main text-sm text-gray-primary"
+                        >Geplantes Marketing Budget</label
+                      >
+                      <span class="font-main text-sm text-accent-gold">*</span>
+                    </div>
+                    <div
+                      class="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm"
+                    >
+                      <input
+                        type="number"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                        id="total-budget"
+                        name="total-budget"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        placeholder="z.B. 50000"
+                        required
+                      />
+                      <span
+                        class="px-3.5 text-gray-primary text-base whitespace-nowrap"
+                        >EUR</span
+                      >
+                    </div>
+                    <p class="font-main text-sm text-gray-500 mt-1 ml-3.5">
+                      Jährliche Angabe
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="flex items-baseline gap-1 mb-1">
+                      <label
+                        for="current-revenue"
+                        class="font-main text-sm text-gray-primary"
+                        >Aktueller Jahresumsatz</label
+                      >
+                      <span class="font-main text-sm text-accent-gold">*</span>
+                    </div>
+                    <div
+                      class="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm"
+                    >
+                      <input
+                        type="number"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                        id="current-revenue"
+                        name="current-revenue"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        placeholder="z.B. 1000000"
+                        required
+                      />
+                      <span
+                        class="px-3.5 text-gray-primary text-base whitespace-nowrap"
+                        >EUR</span
+                      >
+                    </div>
+                    <p class="font-main text-sm text-gray-500 mt-1 ml-3.5">
+                      Jährliche Angabe
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="flex items-baseline gap-1 mb-1">
+                      <label
+                        for="business-focus"
+                        class="font-main text-sm text-gray-primary"
+                        >Unternehmensfokus/-ausrichtung</label
+                      >
+                      <span class="font-main text-sm text-accent-gold">*</span>
+                    </div>
+                    <div
+                      class="relative block bg-white border border-gray-300 rounded-lg shadow-sm"
+                    >
+                      <select
+                        id="business-focus"
+                        name="business-focus"
+                        class="font-main text-base text-black-light py-2.5 px-3.5 pr-8 border-none bg-transparent w-full box-border outline-none appearance-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Hier auswählen
+                        </option>
+                        <option value="neukunden">Neukundengewinnung</option>
+                        <option value="bestandskunden">
+                          Bestandskundenpflege
+                        </option>
+                        <option value="export">Hoher Exportanteil</option>
+                        <option value="innovation">
+                          Innovation/Produktlaunch
+                        </option>
+                      </select>
+                      <span
+                        class="absolute inset-y-0 right-3.5 flex items-center pointer-events-none text-gray-primary text-xs"
+                        >▼</span
+                      >
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex items-baseline gap-1 mb-1">
+                      <label
+                        for="main-goal"
+                        class="font-main text-sm text-gray-primary"
+                        >Hauptziel des Marketings</label
+                      >
+                      <span class="font-main text-sm text-accent-gold">*</span>
+                    </div>
+                    <div
+                      class="relative block bg-white border border-gray-300 rounded-lg shadow-sm"
+                    >
+                      <select
+                        id="main-goal"
+                        name="main-goal"
+                        class="font-main text-base text-black-light py-2.5 px-3.5 pr-8 border-none bg-transparent w-full box-border outline-none appearance-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Hier auswählen
+                        </option>
+                        <option value="leads">Leadgenerierung</option>
+                        <option value="branding">Markenbekanntheit</option>
+                        <option value="sales">Vertriebsunterstützung</option>
+                        <option value="employer_branding">
+                          Mitarbeitergewinnung
+                        </option>
+                      </select>
+                      <span
+                        class="absolute inset-y-0 right-3.5 flex items-center pointer-events-none text-gray-primary text-xs"
+                        >▼</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="next-button mt-6 w-full inline-block rounded-full cursor-pointer text-center font-main font-semibold text-white bg-accent-gold border-2 border-white px-[18px] py-3 text-base leading-6 transition ease-in-out duration-300 hover:opacity-90 active:scale-[0.98] active:translate-y-[1px] no-underline shadow-button box-border"
+                  data-step-target="2"
+                >
+                  Weiter zur Kontaktaufnahme
+                </button>
+              </div>
+              <div class="form-step form-step--2 hidden" id="step-2">
+                <h2 class="font-main font-bold text-xl text-black-light mb-6">
+                  Fast geschafft! Ihre Kontaktdaten
+                </h2>
+
+                <div class="flex flex-col gap-4">
+                  <div>
+                    <div class="flex items-baseline gap-1 mb-1">
+                      <label
+                        for="contact-name"
+                        class="font-main text-sm text-gray-primary"
+                        >Ihr Vor- und Nachname</label
+                      >
+                      <span class="font-main text-sm text-accent-gold">*</span>
+                    </div>
+                    <div
+                      class="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm"
+                    >
+                      <input
+                        type="text"
+                        id="contact-name"
+                        name="contact-name"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        placeholder="z.B. Max Mustermann"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex items-baseline gap-1 mb-1">
+                      <label
+                        for="contact-company"
+                        class="font-main text-sm text-gray-primary"
+                        >Firma</label
+                      >
+                    </div>
+                    <div
+                      class="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm"
+                    >
+                      <input
+                        type="text"
+                        id="contact-company"
+                        name="contact-company"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        placeholder="z.B. Beispiel GmbH"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex items-baseline gap-1 mb-1">
+                      <label
+                        for="contact-email"
+                        class="font-main text-sm text-gray-primary"
+                        >E-Mail</label
+                      >
+                      <span class="font-main text-sm text-accent-gold">*</span>
+                    </div>
+                    <div
+                      class="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm"
+                    >
+                      <input
+                        type="email"
+                        id="contact-email"
+                        name="contact-email"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        placeholder="z.B. max.mustermann@firma.de"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex items-baseline gap-1 mb-1">
+                      <label
+                        for="contact-phone"
+                        class="font-main text-sm text-gray-primary"
+                        >Telefonnummer</label
+                      >
+                    </div>
+                    <div
+                      class="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm"
+                    >
+                      <input
+                        type="tel"
+                        id="contact-phone"
+                        name="contact-phone"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        placeholder="z.B. +49 123 456789"
+                      />
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 mt-2">
+                    <input
+                      type="checkbox"
+                      id="privacy-policy"
+                      name="privacy-policy"
+                      class="h-4 w-4 rounded border-gray-300 text-accent-gold focus:ring-accent-gold"
+                      required
+                    />
+                    <label
+                      for="privacy-policy"
+                      class="font-main text-sm text-gray-primary"
+                    >
+                      Ich habe die
+                      <a
+                        href="/datenschutz"
+                        target="_blank"
+                        class="text-accent-gold underline hover:text-accent-gold/80"
+                        >Datenschutzerklärung</a
+                      >
+                      gelesen und akzeptiere sie.*
+                    </label>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="results-button mt-6 w-full inline-block rounded-full cursor-pointer text-center font-main font-semibold text-white bg-accent-gold border-2 border-white px-[18px] py-3 text-base leading-6 transition ease-in-out duration-300 hover:opacity-90 active:scale-[0.98] active:translate-y-[1px] no-underline shadow-button box-border"
+                  data-step-target="3"
+                >
+                  Ergebnisse anzeigen
+                </button>
+              </div>
+              <div class="form-step form-step--3 hidden" id="step-3">
+                <h2 class="font-main font-bold text-xl text-black-light mb-6">
+                  Ihre ideale Verteilung!
+                </h2>
+
+                <div class="relative h-64 mb-6">
+                  <canvas id="resultsChart"></canvas>
+                </div>
+
+                <div class="flex justify-around items-center text-center mb-6">
+                  <div class="result-item">
+                    <span class="block text-sm text-gray-primary mb-1"
+                      >Digital</span
+                    >
+                    <span
+                      class="block font-semibold text-lg text-blue-600"
+                      id="result-digital"
+                      >--%</span
+                    >
+                  </div>
+                  <div class="result-item">
+                    <span class="block text-sm text-gray-primary mb-1"
+                      >Offline</span
+                    >
+                    <span
+                      class="block font-semibold text-lg text-green-600"
+                      id="result-offline"
+                      >--%</span
+                    >
+                  </div>
+                  <div class="result-item">
+                    <span class="block text-sm text-gray-primary mb-1"
+                      >Print</span
+                    >
+                    <span
+                      class="block font-semibold text-lg text-orange-500"
+                      id="result-print"
+                      >--%</span
+                    >
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  class="contact-button mt-6 w-full inline-block rounded-full cursor-pointer text-center font-main font-semibold text-white bg-accent-gold border-2 border-white px-[18px] py-3 text-base leading-6 transition ease-in-out duration-300 hover:opacity-90 active:scale-[0.98] active:translate-y-[1px] no-underline shadow-button box-border"
+                >
+                  Jetzt Beratung sichern
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="about-section lg:grid lg:grid-cols-2 lg:items-stretch">
+      <div class="image-column lg:col-start-2 lg:row-start-1">
+        <img
+          src="assets/rc-beschreibung-background.jpg"
+          alt="Das Team von Roi & Cavalier in einer Besprechung"
+          class="block w-full h-full object-cover"
+        />
+      </div>
+
+      <div
+        class="content-column bg-black text-gray-primary px-4 py-12 md:px-16 md:py-16 lg:col-start-1 lg:row-start-1 lg:px-24 lg:py-24 flex flex-col justify-center"
+      >
+        <div class="content-wrapper">
+          <div class="logo-wrapper mb-8 lg:mb-6">
+            <img src="assets/logo.svg" alt="Roi & Cavalier Logo" class="block
+            h-10 w-auto"" />
+          </div>
+
+          <p
+            class="font-main text-base leading-relaxed font-normal text-gray-primary mb-6 last:mb-0 lg:text-lg lg:leading-loose"
+          >
+            <span class="text-white font-semibold">Roi & Cavalier</span>
+            ist aus einem Team von Experten im Bereich Maschinenbau, Vertrieb
+            und Marketing entstanden. Wir verbinden fundiertes technisches
+            Know-how mit moderner
+            <span class="text-white font-semibold"
+              >Performance-Marketing-Expertise</span
+            >, damit Sie Ihren Vertrieb in die digitale Zukunft führen können.
+            Ob durch die Einführung automatisierter Leadstrecken, die
+            Implementierung eines maßgeschneiderten CRM-Systems oder die
+            Optimierung Ihrer Online-Präsenz – wir begleiten Sie Schritt für
+            Schritt.
+          </p>
+          <p
+            class="font-main text-base leading-relaxed font-normal text-gray-primary mb-6 last:mb-0 lg:text-lg lg:leading-loose"
+          >
+            <span class="text-white font-semibold">Unser Antrieb:</span> Wir
+            möchten, dass Sie Ihre Position im Markt nachhaltig stärken. Dafür
+            setzen wir auf transparente Kommunikation, individuelle Beratung und
+            ein Retainer-Modell, das eine langfristige und kontinuierliche
+            Zusammenarbeit ermöglicht.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="bg-black text-white text-base leading-relaxed pb-12 lg:pt-16 lg:pb-16"
+    >
+      <div class="block mb-12">
+        <img
+          src="assets/map-rc-footer.png"
+          alt="Karte mit Standorten von Roi & Cavalier"
+          class="block w-full h-auto max-w-full"
+        />
+      </div>
+
+      <div
+        class="flex flex-col gap-12 px-4 lg:flex-row lg:flex-wrap lg:items-start lg:gap-x-16 lg:gap-y-12 lg:max-w-7xl lg:mx-auto lg:px-4"
+      >
+        <section
+          class="flex flex-col items-start lg:flex-[0_1_300px] lg:text-left lg:mb-0"
+        >
+          <div class="mb-4">
+            <img
+              src="assets/logo.svg"
+              alt="Roi & Cavalier Logo"
+              class="block h-[35px] w-auto"
+            />
+          </div>
+          <div>
+            <p class="text-white font-semibold mb-2">Roi & Cavalier oHG</p>
+            <address class="text-gray-primary not-italic leading-relaxed">
+              Sternenberger Hof 5, 51149 Köln<br />
+              <a
+                href="mailto:hello@roi-cavalier.com"
+                class="text-gray-primary no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                >hello@roi-cavalier.com</a
+              ><br />
+              <a
+                href="tel:+4915157989409"
+                class="text-gray-primary no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                >+49 (0) 1515 798 9409</a
+              >
+            </address>
+          </div>
+        </section>
+
+        <nav class="lg:flex-1 lg:min-w-0 lg:mb-0">
+          <div class="mb-8 lg:flex lg:gap-12 lg:mb-12">
+            <ul class="list-none p-0 mb-4 last:mb-0 lg:flex-1 lg:m-0">
+              <li class="mb-3 last:mb-0">
+                <a
+                  href="/kundengewinnung"
+                  class="text-white no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                  >Kundengewinnung</a
+                >
+              </li>
+              <li class="mb-3 last:mb-0">
+                <a
+                  href="/marketing-vertrieb"
+                  class="text-white no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                  >Marketing & Vertrieb</a
+                >
+              </li>
+              <li class="mb-3 last:mb-0">
+                <a
+                  href="/mitarbeitergewinnung"
+                  class="text-white no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                  >Mitarbeitergewinnung</a
+                >
+              </li>
+            </ul>
+            <ul class="list-none p-0 mb-4 last:mb-0 lg:flex-1 lg:m-0">
+              <li class="mb-3 last:mb-0">
+                <a
+                  href="/about"
+                  class="text-white no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                  >About</a
+                >
+              </li>
+              <li class="mb-3 last:mb-0">
+                <a
+                  href="/aktuelles"
+                  class="text-white no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                  >Aktuelles</a
+                >
+              </li>
+              <li class="mb-3 last:mb-0">
+                <a
+                  href="/erstgespraech"
+                  class="text-accent-gold font-semibold no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                  >Erstgespräch</a
+                >
+              </li>
+            </ul>
+          </div>
+          <ul
+            class="list-none p-0 flex flex-wrap gap-x-6 gap-y-3 mb-0 lg:w-full lg:order-1"
+          >
+            <li class="mb-0">
+              <a
+                href="/impressum"
+                class="text-black-light hover:text-gray-primary focus:text-gray-primary hover:opacity-100 focus:opacity-100 no-underline transition duration-200 ease-in-out focus:underline"
+                >Impressum</a
+              >
+            </li>
+            <li class="mb-0">
+              <a
+                href="/datenschutz"
+                class="text-black-light hover:text-gray-primary focus:text-gray-primary hover:opacity-100 focus:opacity-100 no-underline transition duration-200 ease-in-out focus:underline"
+                >Datenschutz</a
+              >
+            </li>
+            <li class="mb-0">
+              <a
+                href="/karriere"
+                class="text-black-light hover:text-gray-primary focus:text-gray-primary hover:opacity-100 focus:opacity-100 no-underline transition duration-200 ease-in-out focus:underline"
+                >Karriere</a
+              >
+            </li>
+            <li class="mb-0">
+              <a
+                href="/agb"
+                class="text-black-light hover:text-gray-primary focus:text-gray-primary hover:opacity-100 focus:opacity-100 no-underline transition duration-200 ease-in-out focus:underline"
+                >AGB</a
+              >
+            </li>
+            <li class="mb-0">
+              <a
+                href="/faq"
+                class="text-black-light hover:text-gray-primary focus:text-gray-primary hover:opacity-100 focus:opacity-100 no-underline transition duration-200 ease-in-out focus:underline"
+                >FAQ</a
+              >
+            </li>
+            <li class="mb-0">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-accent-gold font-semibold no-underline transition duration-200 ease-in-out hover:opacity-80 focus:opacity-80 hover:underline focus:underline"
+                >LinkedIn</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div
+          class="pt-8 border-t border-black-light text-center lg:w-full lg:order-2 lg:mt-4 lg:text-right"
+        >
+          <p class="text-gray-primary text-sm m-0 lg:text-base">
+            &copy; <span id="current-year">2025</span> Roi & Cavalier oHG
+            &ndash; all rights reserved
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>

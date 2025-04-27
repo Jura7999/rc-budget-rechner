@@ -1,0 +1,22 @@
+/* src/input.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+/* bindet die komplette Tailwind-Engine ein */
+@import "tailwindcss";
+
+/* hier definierst du dein Theme direkt in CSS – ganz ohne JS-Config */
+@theme {
+  --color-accent-gold: #e6af78;
+  --color-black-light: #414651;
+  --color-gray-primary: #86868b;
+  --shadow-button: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --font-main: "Inter", sans-serif;
+  --color-hero-start: #0b1b28; /* Gradient-Start  */
+  --color-hero-end: #1f3a53; /* Gradient-Ende   */
+}
+
+/* (optional) eigene Utilities, falls du welche brauchst
+@layer utilities {
+  .shadow-button { box-shadow: var(--shadow-button); }
+}
+*/
