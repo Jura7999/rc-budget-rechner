@@ -421,9 +421,9 @@ document.addEventListener("DOMContentLoaded", function () {
             data: [digital, offline, print], // Die berechneten Prozentwerte
             backgroundColor: [
               // Farben für die Segmente
-              "#3b82f6", // Tailwind blue-500 (Beispiel)
-              "#10b981", // Tailwind emerald-500 (Beispiel)
-              "#f97316", // Tailwind orange-500 (Beispiel)
+              "#D5D9EB", // Tailwind blue-500 (Beispiel)
+              "#E5E7EB", // Tailwind emerald-500 (Beispiel)
+              "#E6AF78", // Tailwind orange-500 (Beispiel)
               // Du kannst hier die Farben an dein Design anpassen (Hex, RGB, etc.)
             ],
             borderColor: "#ffffff", // Farbe des Randes zwischen Segmenten
