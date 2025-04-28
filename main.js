@@ -29,6 +29,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let budgetChartInstance = null;
 
+  // --- NEUE HILFSFUNKTIONEN START ---
+
+  // Zeigt eine Fehlermeldung für einen bestimmten Schritt an
+  function displayErrorMessage(stepIndex, message) {
+    const errorElement = document.getElementById(`step-${stepIndex + 1}-error`); // Finde das <p> für den Schritt (Index + 1 = Schrittnummer)
+    if (errorElement) {
+      errorElement.textContent = message; // Setze den Text der Fehlermeldung
+    }
+  }
+
+  // Löscht die Fehlermeldung für einen bestimmten Schritt
+  function clearErrorMessage(stepIndex) {
+    const errorElement = document.getElementById(`step-${stepIndex + 1}-error`);
+    if (errorElement) {
+      errorElement.textContent = ""; // Setze den Text auf leer
+    }
+  }
+
+  // Fügt einem Input-Feld die Fehler-Styling-Klassen hinzu (und entfernt Standard)
+  function addInputErrorStyle(inputElement) {
+    // Tailwind-Klassen für den Fehlerzustand (Beispiel - anpassen falls nötig)
+    inputElement.classList.add("border-red-500", "focus:ring-red-500");
+    // Standard/Erfolgs-Klassen entfernen, um Konflikte zu vermeiden
+    inputElement.classList.remove(
+      "border-gray-300",
+      "focus:ring-accent-gold/50"
+    );
+
+    // Wenn es ein Select ist, evtl. auch den Wrapper anpassen? (Fürs Erste nicht nötig)
+    // const wrapper = inputElement.closest('div'); // Finde den nächsten div-Wrapper
+    // if (wrapper) wrapper.classList.add('border-red-500'); // Beispiel
+  }
+
+  // Entfernt die Fehler-Styling-Klassen von einem Input-Feld (und stellt Standard wieder her)
+  function removeInputErrorStyle(inputElement) {
+    inputElement.classList.remove("border-red-500", "focus:ring-red-500");
+    inputElement.classList.add("border-gray-300", "focus:ring-accent-gold/50");
+
+    // Evtl. Wrapper-Styling auch zurücksetzen
+    // const wrapper = inputElement.closest('div');
+    // if (wrapper) wrapper.classList.remove('border-red-500');
+  }
+
+  // Entfernt Fehler-Styling von allen Inputs innerhalb eines Schritt-Elements
+  function clearAllErrorStyles(stepElement) {
+    const inputsInStep = stepElement.querySelectorAll("input, select"); // Alle Inputs und Selects im Schritt finden
+    inputsInStep.forEach(removeInputErrorStyle); // Fehlerstyle für jeden entfernen
+  }
+
+  // --- NEUE HILFSFUNKTIONEN ENDE ---
+
   // Funktion, um einen bestimmten Schritt anzuzeigen und andere zu verstecken
   function showStep(stepIndexToShow) {
     console.log("Zeige Schritt mit Index:", stepIndexToShow); // Zum Nachverfolgen
@@ -52,97 +103,157 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (nextButtons.length > 0) {
-    // Sicherstellen, dass der Button existiert
     nextButtons[0].addEventListener("click", function () {
-      console.log("Weiter-Button geklickt!");
+      console.log("Weiter-Button geklickt! Starte Validierung Schritt 1...");
+      const stepIndex = 0; // Wir sind in Schritt 1 (Index 0)
+      let isStepValid = true; // Wichtig: Gehen erstmal von Gültigkeit aus
 
-      // --- Optionale Validierung für Schritt 1 ---
-      const currentStepElement = steps[currentStepIndex]; // Das aktuell sichtbare Step-Div
-      const requiredInputs = currentStepElement.querySelectorAll(
-        "input[required], select[required]"
-      );
-      let isStepValid = true; // Annahme: Schritt ist gültig
+      // --- Elemente für Schritt 1 holen (Inputs und Hints) ---
+      const currentStepElement = steps[stepIndex];
+      const budgetInput = document.getElementById("total-budget");
+      const revenueInput = document.getElementById("current-revenue");
+      const focusSelect = document.getElementById("business-focus");
+      const goalSelect = document.getElementById("main-goal");
+      const budgetHintEl = document.getElementById("total-budget-hint");
+      const revenueHintEl = document.getElementById("current-revenue-hint");
+      // (Wir könnten auch noch Hints für Selects hinzufügen, wenn nötig)
 
-      requiredInputs.forEach(function (input) {
-        if (!input.value) {
-          // Prüfen, ob das Feld leer ist
-          isStepValid = false; // Schritt ist ungültig
-          // Optional: Feld hervorheben oder spezifischere Fehlermeldung
-          console.error("Fehlendes Pflichtfeld:", input.id);
+      // --- Alte Fehler & Hints zurücksetzen ---
+      clearErrorMessage(stepIndex); // Allgemeine Fehlermeldung über Button löschen
+      clearAllErrorStyles(currentStepElement); // Alle roten Rahmen entfernen
+      // Standard-Hint-Texte wiederherstellen (WICHTIG!)
+      if (budgetHintEl) budgetHintEl.textContent = "Jährliche Angabe";
+      if (revenueHintEl) revenueHintEl.textContent = "Jährliche Angabe";
+
+      // --- Validierungen durchführen ---
+
+      // 1. Pflichtfeld: Marketing Budget
+      if (!budgetInput.value) {
+        isStepValid = false;
+        addInputErrorStyle(budgetInput);
+        if (budgetHintEl)
+          budgetHintEl.textContent = "Dies ist ein Pflichtfeld.";
+        console.error("Fehlendes Pflichtfeld:", budgetInput.id);
+      } else {
+        // 2. Mindestwert: Marketing Budget (nur prüfen, wenn nicht leer)
+        const budgetValue = parseFloat(budgetInput.value) || 0;
+        if (budgetValue < 3000) {
+          isStepValid = false;
+          addInputErrorStyle(budgetInput);
+          if (budgetHintEl)
+            budgetHintEl.textContent = "Mindestens 3.000 € erforderlich.";
+          console.error("Marketing Budget zu niedrig:", budgetValue);
         }
-      });
+        // Wenn gültig (else), wird der Hint oben schon auf Standard gesetzt
+      }
 
+      // 3. Pflichtfeld: Jahresumsatz
+      if (!revenueInput.value) {
+        isStepValid = false;
+        addInputErrorStyle(revenueInput);
+        if (revenueHintEl)
+          revenueHintEl.textContent = "Dies ist ein Pflichtfeld.";
+        console.error("Fehlendes Pflichtfeld:", revenueInput.id);
+      } else {
+        // 4. Mindestwert: Jahresumsatz (nur prüfen, wenn nicht leer)
+        const revenueValue = parseFloat(revenueInput.value) || 0;
+        if (revenueValue < 500000) {
+          isStepValid = false;
+          addInputErrorStyle(revenueInput);
+          if (revenueHintEl)
+            revenueHintEl.textContent = "Mindestens 500.000 € erforderlich.";
+          console.error("Jahresumsatz zu niedrig:", revenueValue);
+        }
+        // Wenn gültig (else), wird der Hint oben schon auf Standard gesetzt
+      }
+
+      // 5. Pflichtfeld: Unternehmensfokus (Select)
+      if (!focusSelect.value) {
+        isStepValid = false;
+        addInputErrorStyle(focusSelect); // Roter Rahmen für Select
+        console.error("Fehlendes Pflichtfeld:", focusSelect.id);
+        // Hier könnte man auch einen Hint hinzufügen, wenn es ein <p> dafür gäbe
+      }
+
+      // 6. Pflichtfeld: Hauptziel (Select)
+      if (!goalSelect.value) {
+        isStepValid = false;
+        addInputErrorStyle(goalSelect); // Roter Rahmen für Select
+        console.error("Fehlendes Pflichtfeld:", goalSelect.id);
+        // Hier könnte man auch einen Hint hinzufügen
+      }
+
+      // --- Ergebnis der Validierung behandeln ---
       if (!isStepValid) {
-        alert(
-          "Bitte füllen Sie alle Pflichtfelder (*) im aktuellen Schritt aus."
+        // Wenn *irgendeine* Prüfung fehlgeschlagen ist: Allgemeine Fehlermeldung anzeigen
+        displayErrorMessage(
+          stepIndex,
+          "Bitte prüfen Sie die rot markierten Felder."
         );
+        console.log("Validierung Schritt 1 fehlgeschlagen.");
         return; // Funktion hier abbrechen, nicht zum nächsten Schritt gehen
       }
-      // --- Ende Validierung ---
 
-      // Wenn wir hier ankommen, ist der Schritt gültig (oder es gab keine Validierung)
-      // Gehe zum nächsten Schritt: Erhöhe den Index
-      currentStepIndex++; // z.B. von 0 auf 1
-
-      // Stelle sicher, dass wir nicht über das Ziel hinaus schießen (obwohl wir nur einen Next-Button haben)
+      // --- Wenn alles gültig ist: Zum nächsten Schritt gehen ---
+      console.log("Validierung Schritt 1 erfolgreich.");
+      currentStepIndex++;
       if (currentStepIndex < steps.length) {
-        // Zeige den neuen Schritt an
         showStep(currentStepIndex); // Ruft showStep(1) auf
       } else {
-        // Sollte hier nicht passieren, da nur ein "Next"-Button zu Schritt 2 führt
         console.log("Ende der Schritte erreicht (über Next Button?)");
-        currentStepIndex = steps.length - 1; // Sicherheitshalber Index korrigieren
+        currentStepIndex = steps.length - 1;
       }
     }); // Ende des Event Listeners für 'click'
   } // Ende von if (nextButtons.length > 0)
 
   // Event Listener für den "Ergebnisse anzeigen"-Button
   if (resultsButton) {
-    // Sicherstellen, dass der Button existiert
     resultsButton.addEventListener("click", function () {
       console.log("Ergebnis-Button geklickt!");
+      const stepIndex = 1; // Wir sind in Schritt 2 (Index 1)
 
-      // --- Optionale Validierung für Schritt 2 ---
-      const currentStepElement = steps[currentStepIndex]; // Sollte Schritt 1 sein (Index 1)
-      const requiredInputs =
-        currentStepElement.querySelectorAll("input[required]"); // Finde alle required inputs
+      // 1. Alte Fehler löschen
+      clearErrorMessage(stepIndex);
+      clearAllErrorStyles(steps[stepIndex]);
+
+      // 2. Validierung durchführen
       let isStepValid = true;
+      const currentStepElement = steps[stepIndex];
+      const requiredInputs =
+        currentStepElement.querySelectorAll("input[required]"); // Nur Inputs hier relevant
 
       requiredInputs.forEach(function (input) {
-        // Spezielle Prüfung für Checkboxen (Datenschutz)
         if (input.type === "checkbox") {
           if (!input.checked) {
-            // Prüfen, ob die Checkbox nicht angehakt ist
             isStepValid = false;
+            addInputErrorStyle(input.closest("div")); // Evtl. den ganzen Div markieren? Oder nur Checkbox stylen? Bleiben wir erstmal bei der Checkbox selbst schwierig zu stylen, evtl. das Label. Vorerst keine Markierung für Checkbox.
             console.error("Checkbox nicht akzeptiert:", input.id);
           }
+          // else { removeInputErrorStyle(input); }
         } else {
-          // Normale Prüfung für andere required Inputs (Name, E-Mail)
           if (!input.value) {
-            // Prüfen, ob das Feld leer ist
             isStepValid = false;
+            addInputErrorStyle(input); // Rote Markierung hinzufügen
             console.error("Fehlendes Pflichtfeld:", input.id);
           }
+          // else { removeInputErrorStyle(input); }
         }
       });
 
+      // 3. Ergebnis der Validierung behandeln
       if (!isStepValid) {
-        alert(
-          "Bitte füllen Sie alle Pflichtfelder (*) aus und akzeptieren Sie die Datenschutzerklärung."
+        // Wenn ungültig: Fehlermeldung anzeigen und abbrechen
+        // Leichte Anpassung der Meldung wegen Checkbox
+        displayErrorMessage(
+          stepIndex,
+          "Bitte prüfen Sie die Angaben und akzeptieren Sie den Datenschutz."
         );
-        return; // Funktion hier abbrechen, nicht zum Ergebnis-Schritt gehen
+        return;
       }
-      // --- Ende Validierung ---
 
-      // Wenn wir hier ankommen, ist Schritt 2 gültig
-      // Zeige direkt Schritt 3 (Index 2) an, wo die Ergebnisse hinkommen
-      showStep(2); // Index 2 entspricht dem div mit id="step-3"
-
-      // --- HIER WIRD SPÄTER DIE BERECHNUNG AUSGELÖST ---
-      console.log(
-        "Berechnung und Ergebnis-Anzeige wird hier später aufgerufen!"
-      );
-      calculateAndDisplayResults(); // Funktion kommt später
+      // 4. Wenn gültig: Ergebnisse anzeigen und Berechnung starten
+      showStep(2);
+      calculateAndDisplayResults();
     }); // Ende des Event Listeners für 'click'
   } // Ende von if (resultsButton)
 
