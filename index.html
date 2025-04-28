@@ -160,7 +160,7 @@
                         pattern="[0-9]*"
                         id="total-budget"
                         name="total-budget"
-                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400 border border-gray-300"
                         placeholder="z.B. 50000"
                         required
                       />
@@ -169,7 +169,10 @@
                         >EUR</span
                       >
                     </div>
-                    <p class="font-main text-sm text-gray-500 mt-1 ml-3.5">
+                    <p
+                      class="font-main text-sm text-gray-500 mt-1 ml-3.5"
+                      id="total-budget-hint"
+                    >
                       Jährliche Angabe
                     </p>
                   </div>
@@ -192,7 +195,7 @@
                         pattern="[0-9]*"
                         id="current-revenue"
                         name="current-revenue"
-                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400 border border-gray-300"
                         placeholder="z.B. 1000000"
                         required
                       />
@@ -201,7 +204,10 @@
                         >EUR</span
                       >
                     </div>
-                    <p class="font-main text-sm text-gray-500 mt-1 ml-3.5">
+                    <p
+                      class="font-main text-sm text-gray-500 mt-1 ml-3.5"
+                      id="current-revenue-hint"
+                    >
                       Jährliche Angabe
                     </p>
                   </div>
@@ -221,7 +227,7 @@
                       <select
                         id="business-focus"
                         name="business-focus"
-                        class="font-main text-base text-black-light py-2.5 px-3.5 pr-8 border-none bg-transparent w-full box-border outline-none appearance-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg"
+                        class="font-main text-base text-black-light py-2.5 px-3.5 pr-8 bg-transparent w-full box-border outline-none appearance-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg"
                         required
                       >
                         <option value="" disabled selected>
@@ -258,7 +264,7 @@
                       <select
                         id="main-goal"
                         name="main-goal"
-                        class="font-main text-base text-black-light py-2.5 px-3.5 pr-8 border-none bg-transparent w-full box-border outline-none appearance-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg"
+                        class="font-main text-base text-black-light py-2.5 px-3.5 pr-8 bg-transparent w-full box-border outline-none appearance-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg"
                         required
                       >
                         <option value="" disabled selected>
@@ -278,6 +284,10 @@
                     </div>
                   </div>
                 </div>
+                <p
+                  class="error-message text-red-600 text-sm mt-2 mb-4 h-4"
+                  id="step-1-error"
+                ></p>
                 <button
                   type="button"
                   class="next-button mt-6 w-full inline-block rounded-full cursor-pointer text-center font-main font-semibold text-white bg-accent-gold border-2 border-white px-[18px] py-3 text-base leading-6 transition ease-in-out duration-300 hover:opacity-90 active:scale-[0.98] active:translate-y-[1px] no-underline shadow-button box-border"
@@ -308,7 +318,7 @@
                         type="text"
                         id="contact-name"
                         name="contact-name"
-                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400 border border-gray-300"
                         placeholder="z.B. Max Mustermann"
                         required
                       />
@@ -329,7 +339,7 @@
                         type="text"
                         id="contact-company"
                         name="contact-company"
-                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400 border border-gray-300"
                         placeholder="z.B. Beispiel GmbH"
                       />
                     </div>
@@ -350,7 +360,7 @@
                         type="email"
                         id="contact-email"
                         name="contact-email"
-                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400 border border-gray-300"
                         placeholder="z.B. max.mustermann@firma.de"
                         required
                       />
@@ -371,7 +381,7 @@
                         type="tel"
                         id="contact-phone"
                         name="contact-phone"
-                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400"
+                        class="flex-grow font-main text-base text-black-light py-2.5 px-3.5 bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-gold/50 rounded-lg placeholder:text-gray-400 border border-gray-300"
                         placeholder="z.B. +49 123 456789"
                       />
                     </div>
@@ -399,6 +409,10 @@
                     </label>
                   </div>
                 </div>
+                <p
+                  class="error-message text-red-600 text-sm mt-2 mb-4 h-4"
+                  id="step-2-error"
+                ></p>
                 <button
                   type="button"
                   class="results-button mt-6 w-full inline-block rounded-full cursor-pointer text-center font-main font-semibold text-white bg-accent-gold border-2 border-white px-[18px] py-3 text-base leading-6 transition ease-in-out duration-300 hover:opacity-90 active:scale-[0.98] active:translate-y-[1px] no-underline shadow-button box-border"
