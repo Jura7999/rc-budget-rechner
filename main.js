@@ -450,3 +450,79 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Diagramm erstellt/aktualisiert.");
   } // Ende der Funktion updateResultsChart
 });
+
+// === Google Maps Initialisierung ===
+// (Füge dies zu deiner bestehenden main.js hinzu)
+
+function initMap() {
+  // 1. Standort definieren (!!! BITTE DURCH ECHTE KOORDINATEN ERSETZEN !!!)
+  // Beispiel: Marienplatz, München. Suche deine auf Google Maps! Rechtsklick -> Koordinaten kopieren.
+  const officeLocation = { lat: 50.891253, lng: 7.053127 };
+
+  // 2. Kartenoptionen definieren
+  const mapOptions = {
+    center: officeLocation,
+    zoom: 15, // Passe den Zoom nach Bedarf an
+    mapId: "a5e0580d40795417", // Optional: Wenn du einen Stil in der Cloud Console erstellt hast
+    // styles: [ ... ] // Optional: Wenn du JSON-Stile direkt einfügen willst
+  };
+
+  // 3. Die Karte erstellen und an das HTML-Element binden
+  try {
+    // Es ist gut, dies in einen try-catch-Block zu packen
+    const mapElement = document.getElementById("map");
+    if (!mapElement) {
+      console.error("Map container element mit ID 'map' nicht gefunden!");
+      return;
+    }
+
+    const map = new google.maps.Map(mapElement, mapOptions);
+
+    // === Code für Custom Marker Start ===
+
+    // 1. Haupt-Container für den Marker erstellen (z.B. ein div)
+    const markerElement = document.createElement("div");
+
+    // 2. Tailwind-Klassen für das Aussehen des Containers hinzufügen
+    //    Passe diese Klassen an, wie du den Marker gestalten willst!
+    //    Beispiel: Weißer Hintergrund, etwas Padding, abgerundet, leichter Schatten
+    markerElement.className = "bg-black p-1 rounded-md shadow-lg rounded-4xl";
+
+    // 3. Das Logo-Bild erstellen
+    const imgElement = document.createElement("img");
+
+    // 4. Den Pfad zu deinem Logo setzen (SEHR WICHTIG: ANPASSEN!)
+    imgElement.src = "assets/logo.svg"; // <-- !!! Pfad zu deinem Logo hier eintragen !!!
+
+    imgElement.alt = "Roi & Cavalier Standort"; // Wichtig für Barrierefreiheit
+
+    // 5. Klassen für das Logo hinzufügen (z.B. Größe)
+    imgElement.className = "block w-8 h-8"; // Beispiel: 32x32 Pixel groß. Passe die Größe an!
+
+    // 6. Das Bild in den Marker-Container einfügen
+    markerElement.appendChild(imgElement);
+
+    // Optional: Füge hier weitere Elemente hinzu, wenn du z.B. eine Pfeilspitze brauchst
+
+    // === Code für Custom Marker Ende ===
+
+    // 7. JETZT den AdvancedMarkerElement erstellen und 'content' hinzufügen:
+    new google.maps.marker.AdvancedMarkerElement({
+      position: officeLocation,
+      map: map,
+      title: "Roi & Cavalier Hauptsitz", // Optionaler Standard-Tooltip
+      content: markerElement, // <-- Hier dein selbst erstelltes Element übergeben!
+      // collisionBehavior: google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OTHERS // Optional: Falls Marker überlappen
+    });
+
+    console.log("Google Map erfolgreich initialisiert.");
+  } catch (error) {
+    console.error("Fehler bei der Initialisierung der Google Map:", error);
+    // Optional: Zeige eine Fehlermeldung im #map-Container an
+    const mapElement = document.getElementById("map");
+    if (mapElement) {
+      mapElement.innerHTML =
+        '<p class="text-red-500 p-4 text-center">Karte konnte nicht geladen werden.</p>';
+    }
+  }
+}
