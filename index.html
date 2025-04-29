@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./src/output.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    <script src="main.js" defer></script>
   </head>
   <body class="font-main">
     <section
@@ -526,13 +524,12 @@
       class="bg-black text-white text-base leading-relaxed pb-12 lg:pt-16 lg:pb-16"
     >
       <div class="block mb-12">
-        <img
-          src="assets/map-rc-footer.png"
-          alt="Karte mit Standorten von Roi & Cavalier"
-          class="block w-full h-auto max-w-full"
-        />
+        <div
+          id="map"
+          class="w-full h-96 lg:h-[700px]"
+          aria-label="Karte mit Standort von Roi & Cavalier"
+        ></div>
       </div>
-
       <div
         class="flex flex-col gap-12 px-4 lg:flex-row lg:flex-wrap lg:items-start lg:gap-x-16 lg:gap-y-12 lg:max-w-7xl lg:mx-auto lg:px-4"
       >
@@ -696,6 +693,12 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="main.js" defer></script>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs8x6LLuGRQ-8nQjbxG9EI_YUeAOpQ3tc&callback=initMap&libraries=marker"
+    ></script>
     <script>
       document.getElementById("current-year").textContent =
         new Date().getFullYear();
